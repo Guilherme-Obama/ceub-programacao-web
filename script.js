@@ -1,30 +1,22 @@
 /* 
-let a = "5";
-let b = 2;
+let idade = 18;
+let nome = "joao"
 
-console.log(typeof(a));
-console.log(typeof(b));
+if (idade >= 18 || nome === "joao") {
+    console.log("pode entrar")
+}
 
-let numero1 = 0.1;
-let numero2 = 0.2;
+let meuArray = [1, 2, 3]
 
-console.log(numero1 + numero2) 
-*/
+console.log(meuArray[0]);
+console.log(meuArray)
 
-let texto1 = "ola";
-let texto2 = "mundo";
+console.log(meuArray.length)
 
-let resultadoTexto = texto1 + ", " + texto2
+let pessoa = {
+    nome: "joao",
+    idade: 18,
+    altura: 1.78
+}
 
-console.log(resultadoTexto);
-
-/* 
-let resultado = a - b;
-let resultado2 = a + b;
-
-console.log(resultado)
-console.log(resultado2)
-
-console.log(typeof(resultado));
-console.log(typeof(resultado2)); 
-*/
+console.log("a idade da pessoa " + pessoa['nome'] + " é " + pessoa.idade) */
