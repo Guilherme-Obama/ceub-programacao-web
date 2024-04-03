@@ -22,6 +22,26 @@ botaoConverter.addEventListener("click", converter);
 const botaoLimpar = document.getElementById("botao-limpar");
 botaoLimpar.addEventListener("click", limpar);
 
+// olhar keydown e preventDefault()
+
+let valorUsuario = document.getElementById("valor_entrada");
+valorUsuario.addEventListener("keypress", function(event) {
+
+    //console.log(event);
+
+    if (event.ctrlKey && event.code == "KeyI") {
+        inverter();
+    }
+
+    if (event.ctrlKey && event.code == "KeyB") {
+        limpar();
+    }
+
+    if (event.key == "Enter") {
+        converter();
+    }
+})
+
 const botaoInverter = document.getElementById("botao-inverter");
 botaoInverter.addEventListener("click", inverter);
 
