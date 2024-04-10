@@ -22,28 +22,30 @@ botaoConverter.addEventListener("click", converter);
 const botaoLimpar = document.getElementById("botao-limpar");
 botaoLimpar.addEventListener("click", limpar);
 
-// olhar keydown e preventDefault()
+const botaoInverter = document.getElementById("botao-inverter");
+botaoInverter.addEventListener("click", inverter);
+
+const botaoAceitarMensagem = document.getElementById("botao-aceita-mensagem");
+botaoAceitarMensagem.addEventListener("click", aceitarMensagem);
 
 let valorUsuario = document.getElementById("valor_entrada");
 valorUsuario.addEventListener("keypress", function(event) {
+    
+    console.log(event);
 
-    //console.log(event);
+    if (event.ctrlKey && event.key == "L") {
+        event.preventDefault();
+        limpar();
+    }
 
     if (event.ctrlKey && event.code == "KeyI") {
         inverter();
-    }
-
-    if (event.ctrlKey && event.code == "KeyB") {
-        limpar();
     }
 
     if (event.key == "Enter") {
         converter();
     }
 })
-
-const botaoInverter = document.getElementById("botao-inverter");
-botaoInverter.addEventListener("click", inverter);
 
 function converter() {
     let valorUsuario = document.getElementById("valor_entrada").value;
@@ -83,4 +85,9 @@ function inverter() {
 
     document.getElementById("moeda1").value = valorMoeda2;
     document.getElementById("moeda2").value = valorMoeda1;
+}
+
+function aceitarMensagem() {
+    const divMensagemUsuario = document.getElementById("mensagem-usuario");
+    divMensagemUsuario.classList.add("oculto");
 }
