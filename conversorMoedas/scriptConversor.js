@@ -31,8 +31,6 @@ botaoAceitarMensagem.addEventListener("click", aceitarMensagem);
 let valorUsuario = document.getElementById("valor_entrada");
 valorUsuario.addEventListener("keypress", function(event) {
     
-    console.log(event);
-
     if (event.ctrlKey && event.key == "L") {
         event.preventDefault();
         limpar();
@@ -69,6 +67,16 @@ function converter() {
 
     let paragrafoResultado = document.getElementById("resultado");
     paragrafoResultado.textContent = simbolo + " " + resultado.toFixed(2);
+
+    let objetoResultado = {
+        valorDoUsuario: valorUsuario,
+        valorMoeda1: moeda1,
+        valorMoeda2: moeda2,
+        valorResultado: resultado
+    }
+
+    console.log(objetoResultado);
+    localStorage.setItem("histórico", JSON.stringify(objetoResultado));
 }
 
 function limpar() {
@@ -90,4 +98,14 @@ function inverter() {
 function aceitarMensagem() {
     const divMensagemUsuario = document.getElementById("mensagem-usuario");
     divMensagemUsuario.classList.add("oculto");
+
+    localStorage.setItem("aceitouCookie", "1");
+}
+
+if (localStorage.getItem("aceitouCookie") == "1") {
+    aceitarMensagem();
+}
+
+function salvarResultadoNoLocalStorage() {
+
 }
