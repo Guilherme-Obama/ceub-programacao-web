@@ -2,11 +2,6 @@ h1, h2, h3, h4 {
     color: yellow;
 }
 
-p {
-    color: green;
-    background-color: black;
-}
-
 #titulos {
     color: blue;
     background-color: chocolate;
@@ -15,3 +10,11 @@ p {
     margin: 50px 40px 30px 20px;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #D7E8B0;
+}
