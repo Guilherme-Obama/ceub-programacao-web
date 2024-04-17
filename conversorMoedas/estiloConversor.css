@@ -1,21 +1,62 @@
+* {
+    --cor-de-fundo: #5D737E;
+    --cor-de-fonte: #02010A;
+    --cor-de-fonte-botao: #fff;
+    --cor-de-container: #D7E8B0;
+    --cor-de-botao: #00171F;
+    --cor-hover-botao: #003D52;
+}
+
+body {
+    background-color: var(--cor-de-fundo);
+    color: var(--cor-de-fonte);
+}
+
 #container {
+    background-color: var(--cor-de-container);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
     margin-top: 50px;
-    border: 1px solid #aaa;
     padding: 20px;
     text-align: center;
     width: 700px;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 10px;
+}
+
+button {
+    background-color: var(--cor-de-botao);
+    color: var(--cor-de-fonte-botao);
+    padding: 11.2px;
+    font-family: "Playfair Display", serif;
+}
+
+button:hover {
+    background-color: var(--cor-hover-botao);
+    cursor: pointer;
+}
+
+input {
+    padding: 11.2px;
+    font-family: "Playfair Display", serif;
+}
+
+select {
+    padding: 10px;
+    font-family: "Playfair Display", serif;
 }
 
 input, button, select {
     margin-top: 50px;
     margin-bottom: 50px;
-    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
 }
 
-h1, p {
-    font-family: "Playfair Display", serif;
+#resultado {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 #mensagem-usuario {
