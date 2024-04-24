@@ -16,6 +16,12 @@ const valoresConversao = {
     }
 }
 
+const relacaoNomesMoedas = {
+    real: "BRL",
+    dolar: "USD",
+    euro: "EUR"
+}
+
 const botaoConverter = document.getElementById("botao-converter");
 botaoConverter.addEventListener("click", converter);
 
@@ -45,14 +51,16 @@ valorUsuario.addEventListener("keypress", function(event) {
     }
 })
 
-function converter() {
-    let valorUsuario = document.getElementById("valor_entrada").value;
+function converter(fatorDeConversao) {
+    let historicoRecuperado = recuperaHistorico();
 
+    let valorUsuario = document.getElementById("valor_entrada").value;
+    
     if (valorUsuario <= 0 || valorUsuario == "") {
         alert("O valor não pode ser vazio, negativo ou zero(0)! Verifique o valor!");
         return;
     }
-
+    
     let moeda1 = document.getElementById("moeda1").value;
     let moeda2 = document.getElementById("moeda2").value;
 
@@ -60,9 +68,10 @@ function converter() {
         alert("As moedas são iguais!!");
         return;
     }
+    
+    let parametrosConversao = buscaConversaoAPI(relacaoNomesMoedas[moeda1], relacaoNomesMoedas[moeda2]);
 
     let simbolo = valoresConversao[moeda2]["simbolo"];
-
     let resultado = valorUsuario * valoresConversao[moeda1][moeda2];
 
     let paragrafoResultado = document.getElementById("resultado");
@@ -74,10 +83,6 @@ function converter() {
         valorMoeda2: moeda2,
         valorResultado: resultado.toFixed(2)
     }
-
-   // let objetoResultadoJSON = JSON.stringify(objetoResultado);
-
-    // localStorage.setItem("historico", objetoResultadoJSON);
 
     salvarHistorico(objetoResultado);
 }
@@ -128,4 +133,31 @@ function aceitarMensagem() {
 
 if (localStorage.getItem("aceitouCookie") == "1") {
     aceitarMensagem();
+}
+
+
+function buscaConversaoAPI(moedaOrigem, moedaDestino){
+    let urlAPI = "https://economia.awesomeapi.com.br/last/";
+    urlAPI = urlAPI + moedaOrigem + "-" + moedaDestino;
+
+    let responseAPI;
+
+    fetch(urlAPI).then(function(response) {
+        if (response.status == 200) {
+            console.log("A chamada foi feita com sucesso")
+        }
+        return response.json();
+
+    }).then(function(data){
+        let objetoEmJSON = JSON.stringify(data);
+        console.log(data[moedaOrigem + moedaDestino]);
+        console.log(data[moedaOrigem + moedaDestino]["ask"]);
+        console.log(objetoEmJSON);
+        // retornar o parametro de conversao que está no atributo "ask"
+        responseAPI = data[moedaOrigem + moedaDestino]["ask"];
+    }).catch(function(error){
+        console.log(error);
+    })
+
+    return responseAPI;
 }
